@@ -12,6 +12,7 @@ This repo shows how the dogenano node can be queried from client side and send d
 
 You can also log live transactions by taking reference to archive.html.
 
+> Written from scratch. Help to improve it by making pr, will make more releases soon ^^ 
 `Note: Sorry for the css :(` 
 
 Get your dogenano before its too late!
