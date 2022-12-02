@@ -1,0 +1,88 @@
+<html style="background-image: url('https://dogechain.celio.space/upload/cover.gif');">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  <script>
+        function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+    addr = getParameterByName("id")
+    const payload = {
+  "action": "account_info",  
+  "account": addr,
+  "representative": "true",
+  "weight": "true",
+  "receivable": "true",
+  "include_confirmed": "true"
+} 
+    
+  window.onload =axios.post("https://rpc.dogenano.io/proxy",payload).then(res=>{
+                                       var frontier = res.data.frontier;
+                                                                var open_block = res.data.open_block;
+                                                                var representative = res.data.representative;
+                                                                var balance = res.data.balance/100000000000000000000000000;
+                                                                var confirmed_height = res.data.confirmed_height;
+
+                                      document.getElementById("rep").innerHTML = representative; 
+    document.getElementById("frontier").innerHTML = frontier;
+    document.getElementById("conf").innerHTML = confirmed_height;
+    document.getElementById("tx").innerHTML = res.data.block_count;
+    document.getElementById("bal").innerHTML = balance;
+    
+                                                                        }); 
+
+    var image = new Image();
+image.onload = function () {
+    document.getElementById('id1').setAttribute('src', this.src);
+};
+image.src = 'https://doggycon.dogenano.io/api/v1/pilou/'+getParameterByName("id"); 
+  </script>
+  <style>
+    img {
+      width: 200px;
+      height: auto;
+        position: relative;
+  top: 0;
+  left: 0;
+
+
+    }
+ body {
+  
+  align-items:center;
+  justify-content: center;
+  
+  font-family: courier;
+  position:relative;
+}
+.box {
+  width: 100%;
+  height: 95%;
+  background-color: white;
+  border-radius:8px;
+  position: absolute;
+  bottom: 0; 
+  right: 0; 
+  left: 0;
+  overflow: auto;
+}
+  </style>
+  <body>
+    
+  
+    <abox class="box">
+      <center>
+      <br></br><h1>Account Details</h1><br></br><strong>Balance :</strong><br></br><bal id="bal">balance</bal><br></br><strong>Representative :</strong><br></br><rep id="rep">Rep</rep><br></br><strong>Frontier :</strong><br></br><front id="frontier">Frontier</front><br></br><strong>Block Count :</strong><br></br><count id="tx">No. of transactions</count><br></br><strong>Confirmation Height :</strong><br></br><conf id="conf">Confirmed Blocks</conf>
+      </center>
+      <img id="id1" style="float:center" alt="dogeicon"></img>
+    </abox>
+    
+  </body>
+
+</html>

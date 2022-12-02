@@ -1,0 +1,93 @@
+<html>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script>
+    function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+    
+let b = {
+    "action": "block_info",
+  "hash" : "23097A9B8BCDD57B75FC94C54E886252D5EC12E875ECD6A4FE993B790E28801B",
+  "json_block": "true",
+}    
+
+window.onload = axios.post("https://rpc.dogenano.io/proxy", {"action": "block_info",
+  "hash" : getParameterByName("id"),
+  "json_block": "true"}).then(res=>{console.log(res.data.block_account)
+
+                                  var block_account = res.data.block_account;
+                                    var link_as_account = res.data.contents.link_as_account;
+
+                                    var subtype = res.data.subtype
+                                    var height = res.data.height
+                                    var amt = res.data.amount/1000000000000000000000000000000;
+                                    var work = res.data.contents.work;
+   
+                                    var sign = res.data.contents.signature                                 
+                                      var representative = res.data.contents.representative
+                                                             
+ document.getElementById("amt").innerHTML = `Amount Transacted  ~ ${amt}`;
+      document.getElementById("recieve").innerHTML = `Reciever ~ ${link_as_account}`;
+      document.getElementById("sender").innerHTML = `Sender ~ ${block_account}`;
+      
+document.getElementById("work").innerHTML = `Work ~ ${work}`;
+      
+      document.getElementById("rep").innerHTML = `Representative ~ ${representative}`;
+      document.getElementById("h").innerHTML = `Block Height ~ ${height}`;
+      document.getElementById("type").innerHTML = `Type ~ ${subtype}`;
+      document.getElementById("sign").innerHTML = `Signature ~ ${sign}`;                
+                                   })                                
+                   
+ /*   window.onload = function(e){ 
+        
+    }
+    */
+       
+  </script>
+<style>
+body {
+  
+  align-items:center;
+  justify-content: center;
+  background-color: deepskyblue;
+  font-family: courier;
+  position:relative;
+}
+.box {
+  width: 100%;
+  height: 95%;
+  background-color: white;
+  border-radius:8px;
+  position: absolute;
+  bottom: 0; 
+  right: 0; 
+  left: 0;
+  overflow: auto;
+}
+</style>
+  <body background="https://dogechain.celio.space/upload/cover.gif">
+    <div class="box">
+  <center>
+  <h1>DogeNano Explorer</h1><br></br>
+  <h2>  Hash Details</h2><br><amount id="amt"></amount><br></br>
+  <account id= "recieve"></account><br></br>
+  <acc id="sender"></acc><br></br><work id="work">
+    
+  </work><br></br><rep id= "rep">
+    
+  </rep><br></br><height id="h">
+    
+  </height><br></br><subtype id="type">
+    
+  </subtype><br></br><sign id="sign"></sign><br></br><br></br>
+  </center>
+    </div>
+  </body>
+</html>
