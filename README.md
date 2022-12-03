@@ -9,6 +9,8 @@ This repo shows how the dogenano node can be queried from client side and send d
 
 * Easy to fork and improve
 * DogeIcon displayed for accounts
+* Nodejs Backend
+
 
 You can also log live transactions by taking reference to archive.html.
 
