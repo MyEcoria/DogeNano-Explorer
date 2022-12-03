@@ -53,10 +53,10 @@ ws.onmessage = msg => {
 app.post("/info", function(req,res){
 
   if (req.body.q.startsWith("xdg_")){
-    res.redirect("https://SteelFlawedObservation.v-ss12.repl.co/account/?id="+req.body.q)
+    res.redirect("https://dogechain.celio.space/account/?id="+req.body.q)
   }
   if (!req.body.q.startsWith("xdg_")) {
-    res.redirect("https://SteelFlawedObservation.v-ss12.repl.co/hash/?id="+req.body.q)
+    res.redirect("https://dogechain.celio.space/hash/?id="+req.body.q)
   }
 });
 
