@@ -57,10 +57,10 @@ ws.onmessage = msg => {
 app.post("/info", function(req,res){
 
   if (req.body.q.startsWith("xdg_")){
-    res.redirect(host + "/account/?id="+req.body.q)
+    res.redirect("/account/?id="+req.body.q)
   }
   if (!req.body.q.startsWith("xdg_")) {
-    res.redirect(host + "/hash/?id="+req.body.q)
+    res.redirect("/hash/?id="+req.body.q)
   }
 });
 
